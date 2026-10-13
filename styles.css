@@ -50,10 +50,10 @@ body:after {
     inset: 0;
     z-index: -1;
     background: radial-gradient(ellipse at 77% 13%, #79c8ed26, transparent 44%), radial-gradient(ellipse at 13% 75%, #1759984c, transparent 53%);
-    background:radial-gradient(ellipse at 76% 16%, #79c8ed25, transparent 43%),
+    background: radial-gradient(ellipse at 76% 16%, #79c8ed25, transparent 43%),
         radial-gradient(ellipse at 12% 72%, #17599848, transparent 49%),
         linear-gradient(135deg, #10182cc9, #172b479c 46%, #101a33bd);
-        opacity: .7;
+    opacity: .7;
 }
 
 button,
@@ -177,10 +177,11 @@ input {
 
 .apps {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     width: min(690px, 100%);
     margin: 21px auto 0;
-    gap: 22px 0
+    gap: 22px 0;
+    justify-content: center;
 }
 
 .app {
