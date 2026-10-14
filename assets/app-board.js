@@ -35,6 +35,8 @@
     }
 
     async function openApp(button) {
+        // On a phone, selecting an app restores its full usable width.
+        if (panel.open && matchMedia('(max-width: 650px)').matches) setDock(false);
         if (closing || (panel.open && origin === button)) return;
         const switching = panel.open;
         origin = button;

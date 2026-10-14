@@ -48,7 +48,7 @@
         }
 
         body {
-            background: #0c1729;
+            background: #CDEAEF;
         }
 
         body:before {
@@ -57,11 +57,13 @@
             height: 100vh;
             inset: 0;
             z-index: -2;
-            background: linear-gradient(135deg, #0d1a2ed4, #183252b5 48%, #0c1b35d4), url('assets/sindbad-interior.webp') center/cover no-repeat;
-            filter: saturate(.38) brightness(.72);
+            background: radial-gradient(120% 80% at 50% -10%, #F4FCFB 0%, #EFF9F9 32%, #CDEAEF 70%, #A8D9E3 100%);
+            /* background: linear-gradient(135deg, #0d1a2ed4, #183252b5 48%, #0c1b35d4), url('assets/sindbad-interior.webp') center/cover no-repeat; */
+            /* filter: saturate(.38) brightness(.72); */
         }
+        
 
-        body:after {
+        /* body:after {
             content: "";
             position: absolute;
             inset: 0;
@@ -71,7 +73,7 @@
                 radial-gradient(ellipse at 12% 72%, #17599848, transparent 49%),
                 linear-gradient(135deg, #10182cc9, #172b479c 46%, #101a33bd);
             opacity: .7;
-        }
+        } */
 
         button,
         input {
@@ -550,14 +552,37 @@
                 transition: none !important
             }
         }
+
+        .waves {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: .55;
+        }
     </style>
     <link rel="stylesheet" href="assets/brand-refresh.css">
     <link rel="stylesheet" href="assets/app-board.css">
+    <link rel="stylesheet" href="assets/light-theme.css">
+    <link rel="stylesheet" href="assets/responsive.css">
 </head>
 
 <body>
-    <div class="brand-waves" aria-hidden="true"></div>
 
+    <svg class="waves" viewBox="0 0 440 900" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" opacity=".75">
+            <path d="M-40 90 C 60 40, 160 140, 260 92 S 440 40, 500 96"></path>
+            <path d="M-40 132 C 60 82, 160 182, 260 134 S 440 82, 500 138"></path>
+            <path d="M-40 250 C 80 196, 170 300, 268 250 S 430 198, 500 254"></path>
+            <path d="M-40 296 C 80 242, 170 346, 268 296 S 430 244, 500 300"></path>
+            <path d="M-40 430 C 70 378, 175 482, 272 430 S 432 380, 500 434"></path>
+            <path d="M-40 478 C 70 426, 175 530, 272 478 S 432 428, 500 482"></path>
+            <path d="M-40 620 C 80 566, 168 672, 266 620 S 430 570, 500 624"></path>
+            <path d="M-40 666 C 80 612, 168 718, 266 666 S 430 616, 500 670"></path>
+            <path d="M-40 806 C 70 754, 175 858, 272 806 S 432 756, 500 810"></path>
+        </g>
+    </svg>
     <main class="launcher" aria-labelledby="page-title">
         <section class="content">
 
@@ -639,7 +664,7 @@
 
                 <!-- Odoo -->
                 <div class="app" data-search="Odoo reports">
-                    <button target_link="https://sindbad-home.odoo.com/web/login" class="inactive"
+                    <button target_link="https://sindbad-home.odoo.com/odoo" class="inactive"
                         aria-label="Reports & Odoo link coming soon">
                         <span class="icon tone-4">
                             <span class="symbol" aria-hidden="true">
@@ -651,7 +676,7 @@
                 </div>
                 <!-- Odoo -->
                 <div class="app" data-search="Odoo reports">
-                    <button class="inactive" style="pointer-events: none;" aria-label="Reports & Odoo link coming soon">
+                    <button class="inactive" type="button" disabled aria-label="Add application — coming soon">
                         <span class="icon tone-4">
                             <span class="symbol" aria-hidden="true">
                                 <img src="assets/add.png" alt="">
@@ -677,84 +702,21 @@
     </footer>
 
     <!-- Search Dialog -->
-    <dialog id="searchDialog">
+    <dialog id="searchDialog" aria-labelledby="search-title">
         <form method="dialog" class="search-panel">
 
-            <button class="close" value="cancel" aria-label="Close">
+            <button class="close" type="button" aria-label="Close search">
                 ×
             </button>
 
-            <label for="search">FIND AN APP</label>
+            <label id="search-title" for="search">FIND AN APP</label>
 
             <div class="search-box">
                 <span>⌕</span>
                 <input id="search" type="search" placeholder="Search your applications…" autocomplete="off">
             </div>
 
-            <div id="results" class="results">
-
-                <!-- Sindflow -->
-                <a class="result" data-search="sindflow tasks projects" href="../../sindbad-workspace/?workspace"
-                    target="_blank" rel="noopener">
-                    <img src="assets/sindflow-mark.png" alt="">
-                    <span>
-                        <strong>Sindflow</strong>
-                        <small>Tasks &amp; Projects</small>
-                    </span>
-                    ↗
-                </a>
-
-                <!-- People -->
-                <div class="result" data-search="people hr">
-                    <span class="symbol">♧</span>
-                    <span>
-                        <strong>People</strong>
-                        <small>Link coming soon</small>
-                    </span>
-                </div>
-
-                <!-- Finance -->
-                <div class="result" data-search="finance">
-                    <span class="symbol">▣</span>
-                    <span>
-                        <strong>Finance</strong>
-                        <small>Link coming soon</small>
-                    </span>
-                </div>
-
-                <!-- Project Manager -->
-                <div class="result" data-search="files assets">
-                    <span class="symbol">□</span>
-                    <span>
-                        <strong>Files &amp; Assets</strong>
-                        <small>Link coming soon</small>
-                    </span>
-                </div>
-
-                <!-- Insights -->
-                <div class="result" data-search="insights reports">
-                    <span class="symbol">▥</span>
-                    <span>
-                        <strong>Insights</strong>
-                        <small>Link coming soon</small>
-                    </span>
-                </div>
-
-                <!-- Help Desk -->
-                <div class="result" data-search="help desk">
-                    <span class="symbol">◉</span>
-                    <span>
-                        <strong>Help Desk</strong>
-                        <small>Link coming soon</small>
-                    </span>
-                </div>
-
-                <!-- Empty State -->
-                <p class="empty" hidden>
-                    No apps found. Try another name.
-                </p>
-
-            </div>
+            <div id="results" class="results"></div>
         </form>
     </dialog>
 
@@ -763,69 +725,39 @@
     <dialog class="float-board" aria-labelledby="board-title">
         <div class="board-child">
             <span id="board-title" class="board-sr-only"></span>
-<button type="button" class="dock-toggle" aria-label="Show applications sidebar" aria-expanded="false" aria-controls="app-dock" title="Show applications sidebar" autofocus><span aria-hidden="true">‹</span></button>
+            <button type="button" class="dock-toggle" aria-label="Show applications sidebar" aria-expanded="false"
+                aria-controls="app-dock" title="Show applications sidebar" autofocus><span
+                    aria-hidden="true">‹</span></button>
             <div class="board-layout">
-            <aside class="app-dock" id="app-dock" aria-label="Applications sidebar" inert>
-                <nav class="dock-items" aria-label="Switch application"></nav>
-<div class="dock-actions">
-<button type="button" class="board-fullscreen" aria-label="Full screen" title="Full screen"><span class="dock-action-icon" aria-hidden="true">⛶</span><span>Full screen</span></button>
-<button type="button" class="board-close" aria-label="Back to applications" title="Back to applications"><span class="dock-action-icon" aria-hidden="true">←</span><span>Home</span></button>
-</div>
-            </aside>
-            <div class="board-workspace">
-            <div class="board-stage">
-                <div class="board-loading" role="status"><span class="board-spinner"></span><span>Opening your app…</span></div>
-                <iframe title="Application" class="board" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                <p class="board-missing" hidden>This app doesn't have a link yet.</p>
-            </div>
-            
-            </div>
+                <aside class="app-dock" id="app-dock" aria-label="Applications sidebar" inert>
+                    <nav class="dock-items" aria-label="Switch application"></nav>
+                    <div class="dock-actions">
+                        <button type="button" class="board-fullscreen" aria-label="Full screen"
+                            title="Full screen"><span class="dock-action-icon" aria-hidden="true">⛶</span><span>Full
+                                screen</span></button>
+                        <button type="button" class="board-close" aria-label="Back to applications"
+                            title="Back to applications"><span class="dock-action-icon"
+                                aria-hidden="true">←</span><span>Home</span></button>
+                    </div>
+                </aside>
+                <div class="board-workspace">
+                    <div class="board-stage">
+                        <div class="board-loading" role="status"><span class="board-spinner"></span><span>Opening your
+                                app…</span></div>
+                        <iframe title="Application" class="board"
+                            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        <p class="board-missing" hidden>This app doesn't have a link yet.</p>
+                    </div>
+
+                </div>
             </div>
         </div>
     </dialog>
     <script src="assets/app-board.js" defer></script>
+    <script src="assets/app-search.js" defer></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0/jquery.min.js"></script>
     <script>
-        // const dialog = document.querySelector('#searchDialog');
-        // const findButton = document.querySelector('#findButton');
-        // const input = document.querySelector('#search');
-        // const results = [...document.querySelectorAll('#results .result')];// const emptyState = document.querySelector('#results .empty');
-
-        // function filterResults() {
-        //   const query = input.value.trim().toLowerCase();
-        //   let visible = 0;
-
-        //   results.forEach((result) => {
-        //     const matches = !query || result.dataset.search.includes(query);
-        //     result.hidden = !matches;
-        //     if (matches) visible += 1;
-        //   });
-
-        //   emptyState.hidden = visible !== 0;
-        // }
-
-        // findButton.addEventListener('click', () => {
-        //   input.value = '';
-        //   filterResults();
-        //   dialog.showModal();
-        //   input.focus();
-        // });
-
-        // input.addEventListener('input', filterResults);
-
-        // document.addEventListener('click', (event) => {
-        //   const inactiveLink = event.target.closest('a.inactive');
-        //   if (inactiveLink) event.preventDefault();
-        // });
-
-        // document.addEventListener('keydown', (event) => {
-        //   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
-        //     event.preventDefault();
-        //     findButton.click();
-        //   }
-        // });
-
         function updateClock() {
             document.querySelector('#clock').textContent = new Intl.DateTimeFormat('en-GB', {
                 timeZone: 'Asia/Dubai',
@@ -841,7 +773,7 @@
     </script>
 
     <script>
-       
+
     </script>
 </body>
 

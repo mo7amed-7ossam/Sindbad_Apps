@@ -30,10 +30,10 @@ body {
     overflow: hidden;
     position: relative;
     isolation: isolate;
-    background: #183c40;
+    /* background: #183c40; */
 }
 
-body::before {
+/* body::before {
     position: fixed;
     height: auto;
     background: linear-gradient(120deg, #173a3dec, #135461cf 55%, #383837d9), url('sindbad-interior.webp') center / cover;
@@ -44,9 +44,9 @@ body::after {
     position: fixed;
     background: radial-gradient(ellipse at 82% 5%, #70cddd24, transparent 55%), radial-gradient(ellipse at 0% 100%, #0a8ba063, transparent 55%);
     opacity: 1;
-}
+} */
 
-.brand-waves {
+/* .brand-waves {
     position: fixed;
     inset: 0;
     overflow: hidden;
@@ -67,15 +67,15 @@ body::after {
     right: -25%;
     transform: rotate(-20deg);
     animation: tide 22s ease-in-out infinite alternate;
-}
+} */
 
-.brand-waves::after {
+/* .brand-waves::after {
     top: auto;
     right: auto;
     bottom: -80%;
     left: -34%;
     animation-delay: -11s;
-}
+} */
 
 .launcher {
     height: auto;
