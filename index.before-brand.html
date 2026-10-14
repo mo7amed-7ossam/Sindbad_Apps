@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10233c">
+
+    <title>Sindbad | Your Apps</title>
+
+    <style>
+        @font-face {
+            font-family: Lato;
+            src: url('assets/Lato-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-display: swap
+        }
+
+        @font-face {
+            font-family: Lato;
+            src: url('assets/Lato-Light.ttf') format('truetype');
+            font-weight: 300;
+            font-display: swap
+        }
+
+        :root {
+            font-family: Lato, Segoe UI, sans-serif;
+            color: #f2f6fb;
+            font-synthesis: none
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: #0c1729;
+        }
+
+        body:before {
+            content: "";
+            position: absolute;
+            height: 100vh;
+            inset: 0;
+            z-index: -2;
+            background: linear-gradient(135deg, #0d1a2ed4, #183252b5 48%, #0c1b35d4), url('assets/sindbad-interior.webp') center/cover no-repeat;
+            filter: saturate(.38) brightness(.72);
+        }
+
+        body:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(ellipse at 77% 13%, #79c8ed26, transparent 44%), radial-gradient(ellipse at 13% 75%, #1759984c, transparent 53%);
+            background: radial-gradient(ellipse at 76% 16%, #79c8ed25, transparent 43%),
+                radial-gradient(ellipse at 12% 72%, #17599848, transparent 49%),
+                linear-gradient(135deg, #10182cc9, #172b479c 46%, #101a33bd);
+            opacity: .7;
+        }
+
+        button,
+        input {
+            font: inherit
+        }
+
+        .launcher {
+            height: calc(100dvh - 54px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+
+
+        .content {
+            width: min(920px, 100%);
+            text-align: center;
+            padding: 20px;
+            animation: rise .8s ease both
+        }
+
+        .brand {
+            display: inline-block;
+            margin-bottom: clamp(18px, 3.6vh, 34px)
+        }
+
+        .brand img {
+            width: clamp(100px, 15vh, 140px);
+            display: block;
+            filter: grayscale(1) brightness(0) invert(1);
+            opacity: .92
+        }
+
+        .content h1 {
+            font-size: clamp(26px, min(3.35vw, 4.7vh), 45px);
+            font-weight: 300;
+            letter-spacing: -.5px;
+            line-height: 1.22;
+            margin: 0;
+            color: #f2f5fb;
+            text-shadow: 0 3px 24px #050d2060
+        }
+
+        .content h1 em {
+            font-style: normal;
+            font-weight: 300;
+            color: #a8dce7
+        }
+
+        .content h1 span {
+            display: block;
+            font-size: .98em;
+            background: linear-gradient(105deg, #f1fbff, #93d9e7 65%, #70cddd);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-top: 6px
+        }
+
+        .content h1 span:after {
+            content: "";
+            display: block;
+            width: 34px;
+            height: 2px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #70cddd88, #cfdd28aa);
+            margin: 12px auto 0
+        }
+
+        .subtitle {
+            font-size: clamp(11px, min(1.05vw, 1.8vh), 14px);
+            line-height: 1.7;
+            color: #c2cedf;
+            margin: clamp(12px, 2vh, 18px) auto 0
+        }
+
+        .directory-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            width: min(690px, 100%);
+            margin: clamp(25px, 5.3vh, 55px) auto 0;
+            padding: 0 14px 14px;
+            border-bottom: 1px solid #cde6ff1d
+        }
+
+        .directory-head>span {
+            font-size: 9px;
+            letter-spacing: 1.8px;
+            color: #c1d2df
+        }
+
+        .directory-head button {
+            border: 0;
+            background: transparent;
+            color: #d6e2ec;
+            border-radius: 8px;
+            padding: 6px 8px;
+            cursor: pointer;
+            font-size: 11px
+        }
+
+        .directory-head button:hover {
+            background: #ffffff0c
+        }
+
+        .directory-head kbd {
+            font-size: 9px;
+            border: 1px solid #cde6ff27;
+            border-radius: 4px;
+            padding: 2px 5px;
+            color: #aabed1;
+            margin-left: 5px
+        }
+
+        .apps {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            width: min(690px, 100%);
+            margin: 21px auto 0;
+            gap: 22px 0;
+            justify-content: center;
+        }
+
+        .app {
+            min-width: 0
+        }
+
+        .app button {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            color: inherit;
+            text-decoration: none;
+            padding: 8px 2px;
+            border-radius: 16px;
+            margin: auto;
+        }
+
+        .icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 19px;
+            display: grid;
+            place-items: center;
+            border: 1px solid #bddaf65c;
+            /* background: linear-gradient(145deg, #486078e8, #283e58ed); */
+            background-color: #00000027;
+            box-shadow: inset 0 1px 0 #ffffff30, 0 8px 18px #06122640;
+            transition: transform .35s cubic-bezier(.18, .85, .25, 1.2), box-shadow .35s
+        }
+
+        .icon svg {
+            width: 31px;
+            height: 31px;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            fill: none
+        }
+
+        .icon img {
+            width: 60%;
+            /* filter: brightness(0) invert(1); */
+        }
+
+        .tone-0,
+        .tone-3,
+        .tone-5 {
+            color: #c0f1fa
+        }
+
+        .tone-1,
+        .tone-4 {
+            color: #e6f3aa
+        }
+
+        .tone-2 {
+            color: #f3f7ff
+        }
+
+        .app button:hover .icon,
+        .app button:focus-visible .icon {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: inset 0 1px 0 #ffffff45, 0 15px 28px #04102755;
+            cursor: pointer;
+        }
+
+        .app-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            font-size: clamp(10px, min(.95vw, 1.65vh), 13px);
+            line-height: 1.5;
+            margin-top: 13px;
+            color: #f1f5fc;
+            text-shadow: 0 2px 5px #061329cc
+        }
+
+        .launch-note {
+            font-size: clamp(9px, .75vw, 11px);
+            color: #c0d0e0;
+            margin: clamp(20px, 3.5vh, 32px) 0 0
+        }
+
+        footer {
+            height: 54px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 34px;
+            color: #b8c8d9;
+            font-size: 9px;
+            letter-spacing: 1.5px
+        }
+
+        .clock {
+            font-size: 18px;
+            letter-spacing: 0;
+            font-variant-numeric: tabular-nums;
+            color: #e8f0f5
+        }
+
+        dialog {
+            border: 0;
+            padding: 0;
+            border-radius: 22px;
+            width: min(430px, calc(100% - 32px));
+            box-shadow: 0 25px 90px #07172a80;
+            background: #f5f9fa;
+            color: #354f59
+        }
+
+        dialog::backdrop {
+            background: #0b1d2b88;
+            backdrop-filter: blur(10px)
+        }
+
+        .search-panel {
+            position: relative;
+            padding: 27px
+        }
+
+        .search-panel label {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            color: #71909b;
+            margin-bottom: 19px
+        }
+
+        .close {
+            position: absolute;
+            top: 14px;
+            right: 15px;
+            border: 0;
+            background: transparent;
+            font-size: 25px;
+            color: #68818a;
+            cursor: pointer
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            border-bottom: 1px solid #cbdde1;
+            color: #0a8ba0
+        }
+
+        .search-box input {
+            border: 0;
+            outline: 0;
+            background: transparent;
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #354f59
+        }
+
+        .results {
+            margin-top: 14px;
+            max-height: 45vh;
+            overflow: auto
+        }
+
+        .result {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #436974
+        }
+
+        .result:hover {
+            background: #e8f2f5
+        }
+
+        .result span {
+            flex: 1
+        }
+
+        .result strong,
+        .result small {
+            display: block
+        }
+
+        .result strong {
+            font-size: 13px;
+            font-weight: 400
+        }
+
+        .result small {
+            font-size: 11px;
+            color: #788e97;
+            margin-top: 4px
+        }
+
+        .result img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain
+        }
+
+        .empty {
+            text-align: center;
+            padding: 25px;
+            color: #708995;
+            font-size: 13px
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(10px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        @media(max-width:650px) {
+            .launcher {
+                height: calc(100dvh - 44px)
+            }
+
+            .content {
+                padding: 14px 20px
+            }
+
+            .subtitle,
+            .directory-head>span,
+            .launch-note,
+            footer>span:last-child {
+                display: none
+            }
+
+            .brand {
+                margin-bottom: 22px
+            }
+
+            .brand img {
+                width: clamp(96px, 13vh, 116px)
+            }
+
+            .content h1 {
+                font-size: clamp(24px, min(7.1vw, 3.8vh), 31px)
+            }
+
+            .directory-head {
+                justify-content: center;
+                border: 0;
+                margin-top: 27px;
+                padding: 0
+            }
+
+            .directory-head button {
+                padding: 8px 14px;
+                border: 1px solid #cde6ff20;
+                background: #d8edff05;
+                border-radius: 20px
+            }
+
+            .directory-head kbd {
+                display: none
+            }
+
+            .apps {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                margin-top: 25px;
+                row-gap: clamp(20px, 4vh, 34px)
+            }
+
+            .icon {
+                width: clamp(48px, 8vh, 64px);
+                height: clamp(48px, 8vh, 64px)
+            }
+
+            .app-name {
+                font-size: clamp(10px, 2.9vw, 12px);
+                margin-top: 11px
+            }
+
+            footer {
+                height: 44px;
+                justify-content: center;
+                padding: 8px
+            }
+
+            .clock {
+                font-size: 16px
+            }
+        }
+
+        @media(max-height:500px) {
+            .brand {
+                margin-bottom: 11px
+            }
+
+            .brand img {
+                width: 82px
+            }
+
+            .content h1 {
+                font-size: 25px
+            }
+
+            .directory-head {
+                margin-top: 16px
+            }
+
+            .apps {
+                margin-top: 12px;
+                row-gap: 11px
+            }
+
+            .icon {
+                width: 46px;
+                height: 46px
+            }
+
+            .icon svg {
+                width: 25px;
+                height: 25px
+            }
+
+            .app-name {
+                font-size: 10px;
+                margin-top: 7px
+            }
+
+            .launch-note {
+                display: none
+            }
+
+            footer {
+                height: 38px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="launcher" aria-labelledby="page-title">
+        <section class="content">
+
+            <a class="brand" href="#" aria-label="Sindbad apps">
+                <img src="assets/sindbad-logo.png" alt="Sindbad">
+            </a>
+
+            <h1 id="page-title">
+                Your <em>Sindbad</em> world.
+                <span>Connected.</span>
+            </h1>
+
+            <p class="subtitle">
+                All your everyday tools, one familiar place.
+                Pick an app and get going.
+            </p>
+
+            <div class="directory-head">
+                <span>YOUR APPLICATIONS</span>
+
+                <button id="findButton" type="button">
+                    ⌕
+                    <b>Find an app</b>
+                    <kbd>⌘ / Ctrl K</kbd>
+                </button>
+            </div>
+
+            <!-- Edit application names, descriptions, icons, and links directly in this HTML. -->
+            <nav id="apps" class="apps" aria-label="Sindbad applications">
+
+                <!-- Sindflow -->
+                <div class="app" data-search="sindflow tasks projects">
+                    <button href="#" target="_blank" rel="noopener" aria-label="Open Tasks & Projects">
+                        <span class="icon tone-0">
+                            <img src="assets/sindflow-mark.png" alt="">
+                        </span>
+                        <span class="app-name">Sindflow</span>
+                    </button>
+                </div>
+
+                <!-- People -->
+                <div class="app" data-search="people hr">
+                    <button href="https://server.ayunts.com/" class="inactive"
+                        aria-label="People & HR link coming soon">
+                        <span class="icon tone-1">
+                            <span class="symbol" aria-hidden="true">
+                                <img src="assets/ayun-logo.png" alt="">
+                            </span>
+                        </span>
+                        <span class="app-name">Ayun</span>
+                    </button>
+                </div>
+
+                <!-- Dashboard -->
+                <div class="app" data-search="Dashboard">
+                    <button href="https://www.sindbadom.work/admin/login" class="inactive"
+                        aria-label="Dashboard link coming soon">
+                        <span class="icon tone-2">
+                            <span class="symbol" aria-hidden="true">
+                                <img src="assets/sindbad-dashboard.png" alt="">
+                            </span>
+                        </span>
+                        <span class="app-name">Dashboard</span>
+                    </button>
+                </div>
+
+                <!-- Project Manager -->
+                <div class="app" data-search="files assets">
+                    <button href="https://sindbadom.work/pm/login" class="inactive"
+                        aria-label="Project Manager link coming soon">
+                        <span class="icon tone-3">
+                            <span class="symbol" aria-hidden="true">
+                                <img src="assets/Project-Manager.png" alt="">
+                            </span>
+                        </span>
+                        <span class="app-name">P.Manager</span>
+                    </button>
+                </div>
+
+                <!-- Odoo -->
+                <div class="app" data-search="Odoo reports">
+                    <button href="https://sindbad-home.odoo.com/" class="inactive"
+                        aria-label="Reports & Odoo link coming soon">
+                        <span class="icon tone-4">
+                            <span class="symbol" aria-hidden="true">
+                                <img src="assets/sindodoo.png" alt="">
+                            </span>
+                        </span>
+                        <span class="app-name">Odoo</span>
+                    </button>
+                </div>
+                <!-- Odoo -->
+                <div class="app" data-search="Odoo reports">
+                    <button class="inactive" style="pointer-events: none;" aria-label="Reports & Odoo link coming soon">
+                        <span class="icon tone-4">
+                            <span class="symbol" aria-hidden="true">
+                                <img src="assets/add.png" alt="">
+                            </span>
+                        </span>
+                        <span class="app-name">Add</span>
+                    </button>
+                </div>
+
+            </nav>
+
+            <p class="launch-note">
+                ↗ &nbsp; Your apps open in a new tab. Your workspace stays here.
+            </p>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <span class="clock" id="clock"></span>
+        <span>SINBAD © 2026</span>
+    </footer>
+
+    <!-- Search Dialog -->
+    <dialog id="searchDialog">
+        <form method="dialog" class="search-panel">
+
+            <button class="close" value="cancel" aria-label="Close">
+                ×
+            </button>
+
+            <label for="search">FIND AN APP</label>
+
+            <div class="search-box">
+                <span>⌕</span>
+                <input id="search" type="search" placeholder="Search your applications…" autocomplete="off">
+            </div>
+
+            <div id="results" class="results">
+
+                <!-- Sindflow -->
+                <a class="result" data-search="sindflow tasks projects" href="../../sindbad-workspace/?workspace"
+                    target="_blank" rel="noopener">
+                    <img src="assets/sindflow-mark.png" alt="">
+                    <span>
+                        <strong>Sindflow</strong>
+                        <small>Tasks &amp; Projects</small>
+                    </span>
+                    ↗
+                </a>
+
+                <!-- People -->
+                <div class="result" data-search="people hr">
+                    <span class="symbol">♧</span>
+                    <span>
+                        <strong>People</strong>
+                        <small>Link coming soon</small>
+                    </span>
+                </div>
+
+                <!-- Finance -->
+                <div class="result" data-search="finance">
+                    <span class="symbol">▣</span>
+                    <span>
+                        <strong>Finance</strong>
+                        <small>Link coming soon</small>
+                    </span>
+                </div>
+
+                <!-- Project Manager -->
+                <div class="result" data-search="files assets">
+                    <span class="symbol">□</span>
+                    <span>
+                        <strong>Files &amp; Assets</strong>
+                        <small>Link coming soon</small>
+                    </span>
+                </div>
+
+                <!-- Insights -->
+                <div class="result" data-search="insights reports">
+                    <span class="symbol">▥</span>
+                    <span>
+                        <strong>Insights</strong>
+                        <small>Link coming soon</small>
+                    </span>
+                </div>
+
+                <!-- Help Desk -->
+                <div class="result" data-search="help desk">
+                    <span class="symbol">◉</span>
+                    <span>
+                        <strong>Help Desk</strong>
+                        <small>Link coming soon</small>
+                    </span>
+                </div>
+
+                <!-- Empty State -->
+                <p class="empty" hidden>
+                    No apps found. Try another name.
+                </p>
+
+            </div>
+        </form>
+    </dialog>
+
+    <script>
+        // const dialog = document.querySelector('#searchDialog');
+        // const findButton = document.querySelector('#findButton');
+        // const input = document.querySelector('#search');
+        // const results = [...document.querySelectorAll('#results .result')];// const emptyState = document.querySelector('#results .empty');
+
+        // function filterResults() {
+        //   const query = input.value.trim().toLowerCase();
+        //   let visible = 0;
+
+        //   results.forEach((result) => {
+        //     const matches = !query || result.dataset.search.includes(query);
+        //     result.hidden = !matches;
+        //     if (matches) visible += 1;
+        //   });
+
+        //   emptyState.hidden = visible !== 0;
+        // }
+
+        // findButton.addEventListener('click', () => {
+        //   input.value = '';
+        //   filterResults();
+        //   dialog.showModal();
+        //   input.focus();
+        // });
+
+        // input.addEventListener('input', filterResults);
+
+        // document.addEventListener('click', (event) => {
+        //   const inactiveLink = event.target.closest('a.inactive');
+        //   if (inactiveLink) event.preventDefault();
+        // });
+
+        // document.addEventListener('keydown', (event) => {
+        //   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        //     event.preventDefault();
+        //     findButton.click();
+        //   }
+        // });
+
+        function updateClock() {
+            document.querySelector('#clock').textContent = new Intl.DateTimeFormat('en-GB', {
+                timeZone: 'Asia/Dubai',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false,
+            }).format(new Date());
+        }
+
+        updateClock();
+        setInterval(updateClock, 30000);
+
+    </script>
+
+</body>
+
+</html>

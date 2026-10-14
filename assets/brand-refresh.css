@@ -1,0 +1,457 @@
+/* Sindbad palette from the mini brand sheet. */
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('NunitoSans-Variable.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 200 1000;
+    font-display: swap;
+}
+
+:root {
+    font-family: 'Nunito Sans', Lato, 'Segoe UI', sans-serif;
+    font-optical-sizing: auto;
+    --brand: #0a8ba0;
+    --sky: #70cddd;
+    --lime: #cfdd28;
+    --charcoal: #383837;
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+}
+
+html {
+    min-height: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    min-height: 100dvh;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    background: #183c40;
+}
+
+body::before {
+    position: fixed;
+    height: auto;
+    background: linear-gradient(120deg, #173a3dec, #135461cf 55%, #383837d9), url('sindbad-interior.webp') center / cover;
+    filter: none;
+}
+
+body::after {
+    position: fixed;
+    background: radial-gradient(ellipse at 82% 5%, #70cddd24, transparent 55%), radial-gradient(ellipse at 0% 100%, #0a8ba063, transparent 55%);
+    opacity: 1;
+}
+
+.brand-waves {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.brand-waves::before,
+.brand-waves::after {
+    content: '';
+    position: absolute;
+    width: min(85vw, 1100px);
+    aspect-ratio: 1;
+    border: 1px solid #70cddd1c;
+    border-radius: 44% 56% 61% 39% / 48% 42% 58% 52%;
+    box-shadow: 0 0 0 28px #70cddd06, 0 0 0 29px #70cddd0c, 0 0 0 75px #70cddd04, 0 0 0 76px #70cddd0b;
+    top: -65%;
+    right: -25%;
+    transform: rotate(-20deg);
+    animation: tide 22s ease-in-out infinite alternate;
+}
+
+.brand-waves::after {
+    top: auto;
+    right: auto;
+    bottom: -80%;
+    left: -34%;
+    animation-delay: -11s;
+}
+
+.launcher {
+    height: auto;
+    min-height: calc(100dvh - 64px);
+    overflow: visible;
+}
+
+.content {
+    width: min(960px, 100%);
+    padding: 40px 24px;
+    animation: none;
+}
+
+.brand {
+    margin-bottom: 28px;
+    animation: brand-enter .85s var(--ease-out) both;
+}
+
+.brand img {
+    width: clamp(110px, 16vh, 146px);
+    opacity: 1;
+}
+
+.content h1 {
+    font-size: clamp(30px, 4.2vw, 50px);
+    letter-spacing: -1.3px;
+    text-shadow: none;
+    animation: brand-enter .9s .1s var(--ease-out) both;
+}
+
+.content h1 em {
+    color: var(--lime);
+    /* font-weight: 400; */
+}
+
+.content h1 span {
+    color: #fff;
+    background: none;
+    margin-top: 4px;
+}
+
+.content h1 span::after {
+    width: 42px;
+    height: 3px;
+    margin-top: 18px;
+    background: var(--lime);
+    animation: line-enter .8s .5s var(--ease-out) both;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #d0e5e7;
+    max-width: 360px;
+    margin-top: 19px;
+    animation: brand-enter .9s .2s var(--ease-out) both;
+}
+
+.directory-head {
+    width: min(740px, 100%);
+    margin-top: 42px;
+    padding: 0 4px 15px;
+    border-color: #70cddd30;
+    animation: brand-enter .9s .3s var(--ease-out) both;
+}
+
+.directory-head>span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #bce3e8;
+}
+
+.directory-head button {
+    color: #e7f6f7;
+    transition: background .2s, color .2s;
+}
+
+.directory-head button:hover {
+    background: #70cddd16;
+    color: var(--sky);
+}
+
+.directory-head kbd {
+    border-color: #70cddd40;
+    color: #bce3e8;
+}
+
+.apps {
+    width: min(740px, 100%);
+    margin-top: 22px;
+    gap: 16px 4px;
+}
+
+.app {
+    animation: brand-enter .8s var(--ease-out) both;
+    animation-delay: .36s;
+}
+
+.app:nth-child(2) {
+    animation-delay: .43s;
+}
+
+.app:nth-child(3) {
+    animation-delay: .5s;
+}
+
+.app:nth-child(4) {
+    animation-delay: .57s;
+}
+
+.app:nth-child(5) {
+    animation-delay: .64s;
+}
+
+.app:nth-child(6) {
+    animation-delay: .71s;
+}
+
+.app button {
+    width: 100%;
+    padding: 14px 2px 12px;
+    cursor: pointer;
+}
+
+.icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 21px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #70cddd20, #0a8ba014);
+    border: 1px solid #70cddd50;
+    box-shadow: inset 0 1px 0 #ffffff16, 0 8px 20px #072b3020;
+    transition: transform .45s var(--ease-out), background .3s, border-color .3s, box-shadow .4s;
+}
+
+.icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 20%, #ffffff20 50%, transparent 80%);
+    transform: translateX(-130%);
+    transition: transform .65s var(--ease-out);
+    pointer-events: none;
+}
+
+.icon img {
+    width: 60%;
+    max-height: 46px;
+    object-fit: contain;
+}
+
+.icon .symbol {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.app button:hover .icon,
+.app button:focus-visible .icon {
+    transform: translateY(-6px);
+    background: linear-gradient(145deg, #70cddd35, #0a8ba048);
+    border-color: var(--sky);
+    box-shadow: inset 0 1px 0 #ffffff30, 0 14px 30px #072b304a;
+}
+
+.app button:hover .icon::after,
+.app button:focus-visible .icon::after {
+    transform: translateX(130%);
+}
+
+.app button:active .icon {
+    transform: translateY(-2px) scale(.96);
+}
+
+.app-name {
+    font-size: 12px;
+    margin-top: 14px;
+    color: #e9f5f6;
+    text-shadow: none;
+    transition: color .25s;
+}
+
+.app button:hover .app-name,
+.app button:focus-visible .app-name {
+    color: var(--lime);
+}
+
+.app:last-child .icon {
+    border-style: dashed;
+    background: #70cddd05;
+    box-shadow: none;
+    opacity: .6;
+}
+
+.app:last-child .app-name {
+    color: #a9c4c8;
+}
+
+.launch-note {
+    font-size: 10px;
+    color: #b5d0d3;
+    margin-top: 24px;
+    animation: brand-enter .9s .8s var(--ease-out) both;
+}
+
+footer {
+    height: 64px;
+    padding: 14px 34px;
+    color: #a9c7cb;
+    font-size: 9px;
+}
+
+.clock {
+    font-size: 17px;
+    color: #daedef;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 5px;
+}
+
+@keyframes brand-enter {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes line-enter {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes tide {
+    to {
+        transform: translate3d(-24px, 20px, 0) rotate(4deg);
+    }
+}
+
+@media (max-width: 650px) {
+    .launcher {
+        min-height: calc(100dvh - 54px);
+    }
+
+    .content {
+        padding: 32px 20px 24px;
+    }
+
+    .brand {
+        margin-bottom: 24px;
+    }
+
+    .brand img {
+        width: 116px;
+    }
+
+    .content h1 {
+        font-size: clamp(29px, 7vw, 38px);
+        letter-spacing: -.8px;
+    }
+
+    .subtitle {
+        display: block;
+        font-size: 12px;
+        max-width: 280px;
+    }
+
+    .directory-head {
+        margin-top: 28px;
+        padding-bottom: 0;
+    }
+
+    .apps {
+        width: min(380px, 100%);
+        gap: 14px 8px;
+        margin-top: 18px;
+    }
+
+    .icon {
+        width: 62px;
+        height: 62px;
+        border-radius: 19px;
+    }
+
+    .app-name {
+        font-size: 12px;
+    }
+
+    footer {
+        height: 54px;
+    }
+
+    .brand-waves::before {
+        width: 140vw;
+        top: -25%;
+        right: -85%;
+    }
+
+    .brand-waves::after {
+        width: 150vw;
+        bottom: -35%;
+        left: -100%;
+    }
+}
+
+@media (max-height: 600px) and (min-width: 651px) {
+    .content {
+        padding: 24px;
+    }
+
+    .brand {
+        margin-bottom: 14px;
+    }
+
+    .brand img {
+        width: 90px;
+    }
+
+    .content h1 {
+        font-size: 32px;
+    }
+
+    .directory-head {
+        margin-top: 24px;
+    }
+
+    .launch-note {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ################# */
+.float-board{
+    display: none;
+}
+.float-board .board-child{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    z-index: 2;
+    padding: 1%;
+    display: flex;
+    gap: 1rem;
+    
+}
+
+.float-board .side-nav{
+    width: 100px;
+    background-color: red;
+}
+.float-board iframe{
+    flex-grow: 1;
+    background-color: rebeccapurple;
+}
+
