@@ -1,0 +1,28 @@
+#oplink-guide {
+    position: absolute;
+    z-index: 10;
+    top: 20px;
+    left: 20px;
+    width: min(320px, calc(100% - 40px));
+    padding: 18px 38px 16px 20px;
+    box-sizing: border-box;
+    border: 1px solid #dce9eb;
+    border-radius: 14px;
+    background: #fff;
+    color: #35545a;
+    font: 14px/1.5 'Nunito Sans', Lato, sans-serif;
+    text-align: left;
+    box-shadow: 0 6px 24px #123d461a;
+}
+#oplink-guide[hidden] { display: none; }
+#oplink-guide p { margin: 0; }
+#oplink-guide .guide-close { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 6px; color: #7a8d91; font: 22px/1 sans-serif; cursor: pointer; }
+#oplink-guide .guide-actions { display: flex; align-items: center; gap: 18px; margin-top: 10px; }
+#oplink-guide .guide-actions > * { padding: 4px 0; font: 700 13px/1.5 'Nunito Sans', sans-serif; cursor: pointer; text-decoration: none; }
+#oplink-guide .guide-download { color: #087f92; }
+#oplink-guide .guide-skip { color: #7a8d91; font-weight: 400; }
+#oplink-guide .guide-download:hover { text-decoration: underline; }
+#oplink-guide .guide-close:hover { background: #f0f5f6; }
+#oplink-guide :focus-visible { outline: 2px solid #0a8ba0 !important; outline-offset: 3px; }
+.dock-open #oplink-guide { left: 108px; width: min(320px, calc(100% - 128px)); }
+@media (max-width: 650px) { #oplink-guide { top: 12px; left: 12px; width: min(320px, calc(100% - 24px)); } }
