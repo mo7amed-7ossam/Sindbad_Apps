@@ -16,7 +16,9 @@
     --charcoal: #383837;
     --ease-out: cubic-bezier(.22, 1, .36, 1);
 }
-
+*{
+    outline: none !important;
+}
 html {
     min-height: 100%;
     height: auto;
@@ -263,7 +265,7 @@ body::after {
     color: var(--lime);
 }
 
-.app:last-child .icon {
+/* .app:last-child .icon {
     border-style: dashed;
     background: #70cddd05;
     box-shadow: none;
@@ -272,7 +274,7 @@ body::after {
 
 .app:last-child .app-name {
     color: #a9c4c8;
-}
+} */
 
 .launch-note {
     font-size: 10px;
